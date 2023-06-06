@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de IMC</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      background-image: url('https://www.x-oneacademia.com.br/xone/wp-content/uploads/2022/10/image-1.jpg');
+    }
+
+    h1 {
+      color: #ffffff;
+      text-align: center;
+      
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border: 2px solid #cccccc;
+      border-radius: 5px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #cccccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #333333;
+      color: #ffffff;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calculadora de IMC</h1>
+
+  <form>
+    <label for="nome">Nome</label>
+    <input type="text" id="nome" required>
+
+    <label for="altura">Altura (em metros)</label>
+    <input type="number" step="0.01" id="altura" required>
+
+    <label for="peso">Peso (em kg)</label>
+    <input type="number" step="0.01" id="peso" required>
+
+    <button type="button" onclick="calcularIMC()">Calcular</button>
+
+    <div id="resultado"></div>
+  </form>
+
+  
+
+  <script>
+    function calcularIMC() {
+      var nome = document.getElementById("nome").value;
+      var altura = parseFloat(document.getElementById("altura").value);
+      var peso = parseFloat(document.getElementById("peso").value);
+
+      var imc = peso / (altura * altura);
+
+      var resultado = document.getElementById("resultado");
+      if(nome && altura && peso){
+        resultado.innerHTML = nome + ", seu IMC é: " + imc.toFixed(2) + "<br>";
+      }else{
+        resultado.innerHTML = "Preencha os campos para calcular<br>";
+      }
+      
+
+      if (imc < 18.5) {
+        resultado.innerHTML += "Você está classificado como: Baixo peso";
+      } else if (imc >= 18.5 && imc < 25.0) {
+        resultado.innerHTML += "Você está classificado como: Peso normal";
+      } else if (imc >= 25.0 && imc < 30.0) {
+        resultado.innerHTML += "Você está classificado como: Pré-obeso";
+      } else if (imc >= 30.0 && imc < 35.0) {
+        resultado.innerHTML += "Você está classificado como: Obeso I";
+      } else if (imc >= 35.0 && imc < 40.0) {
+        resultado.innerHTML += "Você está classificado como: Obeso II";
+      } else if(imc >=40.0) {
+        resultado.innerHTML += "Você está classificado como: Obeso III";
+      }
+    }
+  </script>
+</body>
+</html>
